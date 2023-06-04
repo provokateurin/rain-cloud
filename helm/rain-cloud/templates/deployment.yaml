@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "rain-cloud.fullname" . }}
+  labels:
+    {{- include "rain-cloud.labels" . | nindent 4 }}
+spec:
+  selector:
+    matchLabels:
+      {{- include "rain-cloud.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "rain-cloud.selectorLabels" . | nindent 8 }}
+    spec:
+      containers:
+        - name: hello-world
+          image: "{{ .Values.helloWorld.image }}"

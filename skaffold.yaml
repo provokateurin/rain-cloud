@@ -1,0 +1,23 @@
+apiVersion: skaffold/v3
+kind: Config
+metadata:
+  name: rain-cloud
+
+build:
+  local:
+    concurrency: 0
+    push: true
+  artifacts:
+  - image: hello-world
+    ko: {}
+
+deploy:
+  kubeContext: k3d-rain-cloud-local
+  helm:
+    releases:
+      - name: rain-cloud
+        chartPath: helm/rain-cloud
+        namespace: rain-cloud
+        createNamespace: true
+        setValueTemplates:
+          helloWorld.image: hello-world
