@@ -14,6 +14,10 @@ dev: terraform
 k9s:
 	k9s
 
+.PHONY: lint
+lint:
+	go run github.com/golangci/golangci-lint/cmd/golangci-lint@v1.53.2 run
+
 .PHONY: clean
 clean:
 	k3d cluster delete k3d-rain-cloud-local
