@@ -26,5 +26,5 @@ generate:
 
 .PHONY: clean
 clean:
-	k3d cluster delete k3d-rain-cloud-local
+	k3d cluster delete rain-cloud-local
 	rm -f .kubeconfig *.tfstate*
