@@ -18,6 +18,12 @@ k9s:
 lint:
 	go run github.com/golangci/golangci-lint/cmd/golangci-lint@v1.53.2 run
 
+.PHONY: generate
+generate:
+	for app in core; do \
+		go run github.com/deepmap/oapi-codegen/cmd/oapi-codegen@v1.13.0 -generate types,chi-server,strict-server -package $${app}api -o pkg/api/$${app}/openapi.gen.go pkg/api/$${app}/openapi.json; \
+	done
+
 .PHONY: clean
 clean:
 	k3d cluster delete k3d-rain-cloud-local
