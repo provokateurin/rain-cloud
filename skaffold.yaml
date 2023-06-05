@@ -8,8 +8,10 @@ build:
     concurrency: 0
     push: true
   artifacts:
-  - image: hello-world
-    ko: {}
+  - image: core
+    ko:
+      flags:
+        - -tags=core
 
 deploy:
   kubeContext: k3d-rain-cloud-local
@@ -20,4 +22,4 @@ deploy:
         namespace: rain-cloud
         createNamespace: true
         setValueTemplates:
-          helloWorld.image: hello-world
+          core.image: core
