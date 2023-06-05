@@ -4,8 +4,6 @@ import (
 	"context"
 )
 
-type CoreImpl struct{}
-
 //nolint:lll,revive,stylecheck
 func (c CoreImpl) GuestAvatarGetAvatar(ctx context.Context, request GuestAvatarGetAvatarRequestObject) (GuestAvatarGetAvatarResponseObject, error) {
 	panic("implement me")

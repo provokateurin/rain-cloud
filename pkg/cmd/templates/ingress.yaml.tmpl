@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ "{{ include \"rain-cloud.fullname\" . }}" }}-backend
+  labels:
+     {{ "{{- include \"rain-cloud.labels\" . | nindent 4 }}" }}
+spec:
+  rules:
+    - http:
+        paths:
+          {{- range . }}
+          - path: {{ .PathPrefix }}
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ .KubernetesID }}
+                port:
+                  number: 8000
+          {{- end }}

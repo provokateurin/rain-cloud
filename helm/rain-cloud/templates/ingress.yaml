@@ -1,7 +1,9 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: rain-cloud-backend
+  name: {{ include "rain-cloud.fullname" . }}-backend
+  labels:
+     {{- include "rain-cloud.labels" . | nindent 4 }}
 spec:
   rules:
     - http:

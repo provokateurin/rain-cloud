@@ -1,0 +1,17 @@
+//go:build {{ .ID }}
+
+package main
+
+import (
+	"github.com/go-chi/chi/v5"
+	{{ .ID }}api "github.com/provokateurin/rain-cloud/pkg/api/{{ .ID }}"
+	"github.com/provokateurin/rain-cloud/pkg/common"
+)
+
+//nolint:gochecknoinits
+func init() {
+	common.RegisterApp("{{ .ID }}", func(router chi.Router) {
+		var {{ .ID }}API {{ .ID }}api.{{ .InterfacePrefix }}Impl
+		{{ .ID }}api.HandlerFromMux({{ .ID }}api.NewStrictHandler(&{{ .ID }}API, nil), router)
+	})
+}

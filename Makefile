@@ -20,9 +20,7 @@ lint:
 
 .PHONY: generate
 generate:
-	for app in core; do \
-		go run github.com/deepmap/oapi-codegen/cmd/oapi-codegen@v1.13.0 -generate types,chi-server,strict-server -package $${app}api -o pkg/api/$${app}/openapi.gen.go pkg/api/$${app}/openapi.json; \
-	done
+	go run pkg/cmd/generate-apps.go
 
 .PHONY: clean
 clean:
