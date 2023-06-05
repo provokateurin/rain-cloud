@@ -1,3 +1,6 @@
+run:
+  skip-files:
+    - ".*\\.gen\\.go$"
 output:
   sort-results: true
 linters-settings:

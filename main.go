@@ -1,11 +1,12 @@
 package main
 
 import (
-	"fmt"
-	"time"
+	"github.com/provokateurin/rain-cloud/pkg/common"
 )
 
 func main() {
-	fmt.Println("Hello, world!")
-	time.Sleep(time.Minute * 1)
+	err := common.Serve(8000)
+	if err != nil {
+		panic(err)
+	}
 }
