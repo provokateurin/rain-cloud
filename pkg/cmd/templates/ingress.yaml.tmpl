@@ -8,12 +8,14 @@ spec:
   rules:
     - http:
         paths:
-          {{- range . }}
-          - path: {{ .PathPrefix }}
+          {{- range $app := . }}
+          {{- range $pathPrefix := .PathPrefixes }}
+          - path: {{ $pathPrefix }}
             pathType: Prefix
             backend:
               service:
-                name: {{ .KubernetesID }}
+                name: {{ $app.KubernetesID }}
                 port:
                   number: 8000
+          {{- end }}
           {{- end }}

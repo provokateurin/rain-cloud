@@ -30,7 +30,7 @@ type App struct {
 	KubernetesID    string
 	InterfacePrefix string
 	Spec            string
-	PathPrefix      string
+	PathPrefixes    []string
 }
 
 func main() {
@@ -41,7 +41,7 @@ func main() {
 			KubernetesID:    "core",
 			InterfacePrefix: "Core",
 			Spec:            "nextcloud/server/core/openapi.json",
-			PathPrefix:      "/",
+			PathPrefixes:    []string{"/"},
 		},
 	}
 
