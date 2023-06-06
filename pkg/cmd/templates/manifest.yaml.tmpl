@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ "{{ include \"rain-cloud.fullname\" . }}" }}-{{ .KubernetesID }}
+  name: {{ "{{ include \"rain-cloud.fullname\" . }}" }}-app-{{ .KubernetesID }}
   labels:
     {{ "{{- include \"rain-cloud.labels\" . | nindent 4 }}" }}
 spec:
   selector:
     matchLabels:
-      app: {{ .ID }}
+      app: app-{{ .ID }}
       {{ "{{- include \"rain-cloud.selectorLabels\" . | nindent 6 }}" }}
   template:
     metadata:
       labels:
-        app: {{ .ID }}
+        app: app-{{ .ID }}
         {{ "{{- include \"rain-cloud.selectorLabels\" . | nindent 8 }}" }}
     spec:
       containers:
-        - name: {{ .KubernetesID }}
-          image: "{{ "{{ .Values." }}{{ .ID }}{{ ".image }}" }}"
+        - name: app-{{ .KubernetesID }}
+          image: "{{ "{{ .Values.apps." }}{{ .ID }}{{ ".image }}" }}"
           ports:
             - containerPort: 8000
 
@@ -26,10 +26,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ .KubernetesID }}
+  name: app-{{ .KubernetesID }}
 spec:
   selector:
-    app: {{ .ID }}
+    app: app-{{ .ID }}
   ports:
     - port: 8000
       targetPort: 8000

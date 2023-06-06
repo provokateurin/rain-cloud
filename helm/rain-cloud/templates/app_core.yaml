@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "rain-cloud.fullname" . }}-core
+  name: {{ include "rain-cloud.fullname" . }}-app-core
   labels:
     {{- include "rain-cloud.labels" . | nindent 4 }}
 spec:
   selector:
     matchLabels:
-      app: core
+      app: app-core
       {{- include "rain-cloud.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       labels:
-        app: core
+        app: app-core
         {{- include "rain-cloud.selectorLabels" . | nindent 8 }}
     spec:
       containers:
-        - name: core
-          image: "{{ .Values.core.image }}"
+        - name: app-core
+          image: "{{ .Values.apps.core.image }}"
           ports:
             - containerPort: 8000
 
@@ -26,10 +26,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: core
+  name: app-core
 spec:
   selector:
-    app: core
+    app: app-core
   ports:
     - port: 8000
       targetPort: 8000

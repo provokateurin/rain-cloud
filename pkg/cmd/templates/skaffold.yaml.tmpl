@@ -9,7 +9,7 @@ build:
     push: true
   artifacts:
   {{- range . }}
-  - image: {{ .ID }}
+  - image: app-{{ .ID }}
     ko:
       flags:
         - -tags={{ .ID }}
@@ -25,5 +25,5 @@ deploy:
         createNamespace: true
         setValueTemplates:
           {{- range . }}
-          {{ .ID }}.image: {{ .ID }}
+          apps.{{ .ID }}.image: app-{{ .ID }}
           {{- end }}

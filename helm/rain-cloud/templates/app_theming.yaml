@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "rain-cloud.fullname" . }}-theming
+  name: {{ include "rain-cloud.fullname" . }}-app-theming
   labels:
     {{- include "rain-cloud.labels" . | nindent 4 }}
 spec:
   selector:
     matchLabels:
-      app: theming
+      app: app-theming
       {{- include "rain-cloud.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       labels:
-        app: theming
+        app: app-theming
         {{- include "rain-cloud.selectorLabels" . | nindent 8 }}
     spec:
       containers:
-        - name: theming
-          image: "{{ .Values.theming.image }}"
+        - name: app-theming
+          image: "{{ .Values.apps.theming.image }}"
           ports:
             - containerPort: 8000
 
@@ -26,10 +26,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: theming
+  name: app-theming
 spec:
   selector:
-    app: theming
+    app: app-theming
   ports:
     - port: 8000
       targetPort: 8000

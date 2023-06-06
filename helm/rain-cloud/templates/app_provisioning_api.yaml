@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "rain-cloud.fullname" . }}-provisioning-api
+  name: {{ include "rain-cloud.fullname" . }}-app-provisioning-api
   labels:
     {{- include "rain-cloud.labels" . | nindent 4 }}
 spec:
   selector:
     matchLabels:
-      app: provisioning_api
+      app: app-provisioning_api
       {{- include "rain-cloud.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       labels:
-        app: provisioning_api
+        app: app-provisioning_api
         {{- include "rain-cloud.selectorLabels" . | nindent 8 }}
     spec:
       containers:
-        - name: provisioning-api
-          image: "{{ .Values.provisioning_api.image }}"
+        - name: app-provisioning-api
+          image: "{{ .Values.apps.provisioning_api.image }}"
           ports:
             - containerPort: 8000
 
@@ -26,10 +26,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: provisioning-api
+  name: app-provisioning-api
 spec:
   selector:
-    app: provisioning_api
+    app: app-provisioning_api
   ports:
     - port: 8000
       targetPort: 8000

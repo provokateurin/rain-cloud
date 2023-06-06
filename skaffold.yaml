@@ -8,15 +8,15 @@ build:
     concurrency: 0
     push: true
   artifacts:
-  - image: provisioning_api
+  - image: app-provisioning_api
     ko:
       flags:
         - -tags=provisioning_api
-  - image: theming
+  - image: app-theming
     ko:
       flags:
         - -tags=theming
-  - image: core
+  - image: app-core
     ko:
       flags:
         - -tags=core
@@ -30,6 +30,6 @@ deploy:
         namespace: rain-cloud
         createNamespace: true
         setValueTemplates:
-          provisioning_api.image: provisioning_api
-          theming.image: theming
-          core.image: core
+          apps.provisioning_api.image: app-provisioning_api
+          apps.theming.image: app-theming
+          apps.core.image: app-core
