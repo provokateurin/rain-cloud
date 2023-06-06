@@ -14,7 +14,10 @@ var router = chi.NewRouter()
 
 //nolint:gochecknoinits
 func init() {
+	router.Use(middleware.RequestID)
+	router.Use(middleware.RealIP)
 	router.Use(middleware.Logger)
+	router.Use(middleware.Recoverer)
 }
 
 func Serve(port int) error {
