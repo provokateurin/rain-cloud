@@ -41,13 +41,20 @@ func main() {
 			KubernetesID:    "provisioning-api",
 			InterfacePrefix: "ProvisioningApi",
 			Spec:            "nextcloud/server/apps/provisioning_api/openapi.json",
-			PathPrefixes: []string{
-				"/ocs/v2.php/apps/provisioning_api",
+			PathPrefixes: append(
+				pathPrefixesForApp("provisioning_api", false, true),
 				"/ocs/v2.php/cloud/apps",
 				"/ocs/v2.php/cloud/groups",
 				"/ocs/v2.php/cloud/user",
 				"/ocs/v2.php/cloud/users",
-			},
+			),
+		},
+		{
+			ID:              "theming",
+			KubernetesID:    "theming",
+			InterfacePrefix: "Theming",
+			Spec:            "nextcloud/server/apps/theming/openapi.json",
+			PathPrefixes:    pathPrefixesForApp("theming", true, true),
 		},
 		// Core has to be last
 		{
@@ -138,4 +145,25 @@ func writeTemplate(path, t string, data any) error {
 	}
 
 	return nil
+}
+
+func pathPrefixesForApp(name string, index, ocs bool) []string {
+	var prefixes []string
+
+	if index {
+		prefixes = append(
+			prefixes,
+			fmt.Sprintf("/apps/%s", name),
+			fmt.Sprintf("/index.php/apps/%s", name),
+		)
+	}
+
+	if ocs {
+		prefixes = append(
+			prefixes,
+			fmt.Sprintf("/ocs/v2.php/apps/%s", name),
+		)
+	}
+
+	return prefixes
 }

@@ -43,6 +43,27 @@ spec:
                 name: provisioning-api
                 port:
                   number: 8000
+          - path: /apps/theming
+            pathType: Prefix
+            backend:
+              service:
+                name: theming
+                port:
+                  number: 8000
+          - path: /index.php/apps/theming
+            pathType: Prefix
+            backend:
+              service:
+                name: theming
+                port:
+                  number: 8000
+          - path: /ocs/v2.php/apps/theming
+            pathType: Prefix
+            backend:
+              service:
+                name: theming
+                port:
+                  number: 8000
           - path: /
             pathType: Prefix
             backend:

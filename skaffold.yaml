@@ -12,6 +12,10 @@ build:
     ko:
       flags:
         - -tags=provisioning_api
+  - image: theming
+    ko:
+      flags:
+        - -tags=theming
   - image: core
     ko:
       flags:
@@ -27,4 +31,5 @@ deploy:
         createNamespace: true
         setValueTemplates:
           provisioning_api.image: provisioning_api
+          theming.image: theming
           core.image: core
