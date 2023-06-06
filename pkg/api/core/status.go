@@ -6,7 +6,7 @@ import (
 	"github.com/provokateurin/rain-cloud/pkg/common"
 )
 
-//nolint:lll,revive,stylecheck
+//nolint:revive
 func (c CoreImpl) GetStatus(ctx context.Context, request GetStatusRequestObject) (GetStatusResponseObject, error) {
 	return GetStatus200JSONResponse{
 		Edition:         common.Edition,

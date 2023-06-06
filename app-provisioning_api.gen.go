@@ -8,7 +8,6 @@ import (
 	"github.com/provokateurin/rain-cloud/pkg/common"
 )
 
-//nolint:gochecknoinits
 func init() {
 	common.RegisterApp("provisioning_api", func(router chi.Router) {
 		var provisioning_apiAPI provisioning_apiapi.ProvisioningApiImpl

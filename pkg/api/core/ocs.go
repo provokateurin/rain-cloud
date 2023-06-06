@@ -2,10 +2,11 @@ package coreapi
 
 import (
 	"context"
+
 	"github.com/provokateurin/rain-cloud/pkg/common"
 )
 
-//nolint:lll,revive,stylecheck
+//nolint:lll,revive
 func (c CoreImpl) OcsGetCapabilities(ctx context.Context, request OcsGetCapabilitiesRequestObject) (OcsGetCapabilitiesResponseObject, error) {
 	return OcsGetCapabilities200JSONResponse{Ocs: struct {
 		Data struct {
@@ -74,5 +75,5 @@ func (c CoreImpl) OcsGetCapabilities(ctx context.Context, request OcsGetCapabili
 		Micro:           common.VersionMicro,
 		Minor:           common.VersionMinor,
 		String:          common.VersionString,
-	})}), Meta: dummyOCSMeta})}, nil
+	})}), Meta: common.DummyOCSMeta})}, nil
 }

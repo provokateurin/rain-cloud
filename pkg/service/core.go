@@ -18,7 +18,7 @@ type coreService struct {
 //nolint:gochecknoglobals
 var CoreService = &coreService{}
 
-func (s *coreService) GenerateAvatar(name string, size int, dark bool) ([]byte, string, error) {
+func (s *coreService) GenerateAvatar(name string, size int, dark bool) (avatar []byte, contentType string, err error) {
 	var background, foreground color.Color
 	if dark {
 		background = color.Black
@@ -54,7 +54,7 @@ func (s *coreService) GenerateAvatar(name string, size int, dark bool) ([]byte, 
 	d.DrawString(name)
 
 	buf := new(bytes.Buffer)
-	err := png.Encode(buf, img)
+	err = png.Encode(buf, img)
 	if err != nil {
 		return nil, "", fmt.Errorf("failed to encode png: %w", err)
 	}

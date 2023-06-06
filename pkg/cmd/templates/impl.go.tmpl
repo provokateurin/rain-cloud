@@ -1,3 +1,5 @@
 package {{ .ID }}api
 
 type {{ .InterfacePrefix }}Impl struct{}
+
+var _ StrictServerInterface = (*{{ .InterfacePrefix }}Impl)(nil)

@@ -2,9 +2,11 @@ package coreapi
 
 import (
 	"context"
+
+	"github.com/provokateurin/rain-cloud/pkg/common"
 )
 
-//nolint:lll,revive,stylecheck
+//nolint:lll,revive
 func (c CoreImpl) NavigationGetAppsNavigation(ctx context.Context, request NavigationGetAppsNavigationRequestObject) (NavigationGetAppsNavigationResponseObject, error) {
 	return NavigationGetAppsNavigation200JSONResponse{Ocs: struct {
 		Data []NavigationEntry `json:"data"`
@@ -12,10 +14,5 @@ func (c CoreImpl) NavigationGetAppsNavigation(ctx context.Context, request Navig
 	}(struct {
 		Data []NavigationEntry
 		Meta OCSMeta
-	}{Data: []NavigationEntry{}, Meta: dummyOCSMeta})}, nil
-}
-
-//nolint:lll,revive,stylecheck
-func (c CoreImpl) NavigationGetSettingsNavigation(ctx context.Context, request NavigationGetSettingsNavigationRequestObject) (NavigationGetSettingsNavigationResponseObject, error) {
-	panic("implement me")
+	}{Data: []NavigationEntry{}, Meta: common.DummyOCSMeta})}, nil
 }

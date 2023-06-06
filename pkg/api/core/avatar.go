@@ -9,7 +9,7 @@ import (
 	"github.com/provokateurin/rain-cloud/pkg/service"
 )
 
-//nolint:lll,revive,stylecheck
+//nolint:lll,revive
 func (c CoreImpl) GuestAvatarGetAvatar(ctx context.Context, request GuestAvatarGetAvatarRequestObject) (GuestAvatarGetAvatarResponseObject, error) {
 	size, err := parseSize(request.Size)
 	if err != nil {
@@ -28,7 +28,7 @@ func (c CoreImpl) GuestAvatarGetAvatar(ctx context.Context, request GuestAvatarG
 	}, nil
 }
 
-//nolint:lll,revive,stylecheck
+//nolint:lll,revive
 func (c CoreImpl) GuestAvatarGetAvatarDark(ctx context.Context, request GuestAvatarGetAvatarDarkRequestObject) (GuestAvatarGetAvatarDarkResponseObject, error) {
 	size, err := parseSize(request.Size)
 	if err != nil {
@@ -47,7 +47,7 @@ func (c CoreImpl) GuestAvatarGetAvatarDark(ctx context.Context, request GuestAva
 	}, nil
 }
 
-//nolint:lll,revive,stylecheck
+//nolint:lll,revive
 func (c CoreImpl) AvatarGetAvatar(ctx context.Context, request AvatarGetAvatarRequestObject) (AvatarGetAvatarResponseObject, error) {
 	avatar, contentType, err := service.CoreService.GenerateAvatar(request.UserId, int(request.Size), false)
 	if err != nil {
@@ -64,7 +64,7 @@ func (c CoreImpl) AvatarGetAvatar(ctx context.Context, request AvatarGetAvatarRe
 	}, nil
 }
 
-//nolint:lll,revive,stylecheck
+//nolint:lll,revive
 func (c CoreImpl) AvatarGetAvatarDark(ctx context.Context, request AvatarGetAvatarDarkRequestObject) (AvatarGetAvatarDarkResponseObject, error) {
 	avatar, contentType, err := service.CoreService.GenerateAvatar(request.UserId, int(request.Size), true)
 	if err != nil {
