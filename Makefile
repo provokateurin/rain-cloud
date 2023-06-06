@@ -21,6 +21,8 @@ lint:
 .PHONY: generate
 generate:
 	go run pkg/cmd/generate-apps.go
+	sed -i "s/GroupsGetGroupUsersDetails200JSONResponse_Ocs_Data_Users_AdditionalProperties/interface{}/" pkg/api/provisioning_api/openapi.gen.go
+	sed -i "s/UsersGetUsersDetails200JSONResponse_Ocs_Data_Users_AdditionalProperties/interface{}/" pkg/api/provisioning_api/openapi.gen.go
 
 .PHONY: clean
 clean:

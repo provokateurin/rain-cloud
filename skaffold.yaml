@@ -8,6 +8,10 @@ build:
     concurrency: 0
     push: true
   artifacts:
+  - image: provisioning_api
+    ko:
+      flags:
+        - -tags=provisioning_api
   - image: core
     ko:
       flags:
@@ -22,4 +26,5 @@ deploy:
         namespace: rain-cloud
         createNamespace: true
         setValueTemplates:
+          provisioning_api.image: provisioning_api
           core.image: core

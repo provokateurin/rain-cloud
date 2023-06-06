@@ -35,6 +35,19 @@ type App struct {
 
 func main() {
 	apps := []App{
+		{
+			ID:              "provisioning_api",
+			KubernetesID:    "provisioning-api",
+			InterfacePrefix: "ProvisioningApi",
+			Spec:            "nextcloud/server/apps/provisioning_api/openapi.json",
+			PathPrefixes: []string{
+				"/ocs/v2.php/apps/provisioning_api",
+				"/ocs/v2.php/cloud/apps",
+				"/ocs/v2.php/cloud/groups",
+				"/ocs/v2.php/cloud/user",
+				"/ocs/v2.php/cloud/users",
+			},
+		},
 		// Core has to be last
 		{
 			ID:              "core",

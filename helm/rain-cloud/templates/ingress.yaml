@@ -8,6 +8,41 @@ spec:
   rules:
     - http:
         paths:
+          - path: /ocs/v2.php/apps/provisioning_api
+            pathType: Prefix
+            backend:
+              service:
+                name: provisioning-api
+                port:
+                  number: 8000
+          - path: /ocs/v2.php/cloud/apps
+            pathType: Prefix
+            backend:
+              service:
+                name: provisioning-api
+                port:
+                  number: 8000
+          - path: /ocs/v2.php/cloud/groups
+            pathType: Prefix
+            backend:
+              service:
+                name: provisioning-api
+                port:
+                  number: 8000
+          - path: /ocs/v2.php/cloud/user
+            pathType: Prefix
+            backend:
+              service:
+                name: provisioning-api
+                port:
+                  number: 8000
+          - path: /ocs/v2.php/cloud/users
+            pathType: Prefix
+            backend:
+              service:
+                name: provisioning-api
+                port:
+                  number: 8000
           - path: /
             pathType: Prefix
             backend:
