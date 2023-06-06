@@ -4,6 +4,7 @@ import (
 	_ "embed"
 	"fmt"
 	"os"
+	"strings"
 	"text/template"
 
 	"github.com/deepmap/oapi-codegen/pkg/codegen"
@@ -88,6 +89,14 @@ func main() {
 		if err != nil {
 			panic(err)
 		}
+
+		paths := openapi3.Paths{}
+		for path, item := range spec.Paths {
+			path = strings.Replace(path, "/index.php", "", 1)
+			paths[path] = item
+		}
+		spec.Paths = paths
+
 		code, err := codegen.Generate(spec, codegen.Configuration{
 			PackageName: fmt.Sprintf("%sapi", app.ID),
 			Generate: codegen.GenerateOptions{

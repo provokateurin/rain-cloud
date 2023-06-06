@@ -18,6 +18,7 @@ func init() {
 	router.Use(middleware.RealIP)
 	router.Use(middleware.Logger)
 	router.Use(middleware.Recoverer)
+	router.Use(middleware.PathRewrite("/index.php", ""))
 }
 
 func Serve(port int) error {
