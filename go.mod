@@ -6,6 +6,7 @@ require (
 	github.com/deepmap/oapi-codegen v1.13.0
 	github.com/getkin/kin-openapi v0.117.0
 	github.com/go-chi/chi/v5 v5.0.8
+	golang.org/x/image v0.7.0
 )
 
 require (

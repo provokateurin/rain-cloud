@@ -4,24 +4,13 @@ import (
 	"context"
 )
 
-//nolint:lll,revive,stylecheck
-func (c CoreImpl) GuestAvatarGetAvatar(ctx context.Context, request GuestAvatarGetAvatarRequestObject) (GuestAvatarGetAvatarResponseObject, error) {
-	panic("implement me")
-}
-
-//nolint:lll,revive,stylecheck
-func (c CoreImpl) GuestAvatarGetAvatarDark(ctx context.Context, request GuestAvatarGetAvatarDarkRequestObject) (GuestAvatarGetAvatarDarkResponseObject, error) {
-	panic("implement me")
-}
-
-//nolint:lll,revive,stylecheck
-func (c CoreImpl) AvatarGetAvatar(ctx context.Context, request AvatarGetAvatarRequestObject) (AvatarGetAvatarResponseObject, error) {
-	panic("implement me")
-}
-
-//nolint:lll,revive,stylecheck
-func (c CoreImpl) AvatarGetAvatarDark(ctx context.Context, request AvatarGetAvatarDarkRequestObject) (AvatarGetAvatarDarkResponseObject, error) {
-	panic("implement me")
+//nolint:gochecknoglobals
+var dummyOCSMeta = OCSMeta{
+	Itemsperpage: nil,
+	Message:      nil,
+	Status:       "ok",
+	Statuscode:   200,
+	Totalitems:   nil,
 }
 
 //nolint:lll,revive,stylecheck
@@ -56,11 +45,6 @@ func (c CoreImpl) ClientFlowLoginV2Init(ctx context.Context, request ClientFlowL
 
 //nolint:lll,revive,stylecheck
 func (c CoreImpl) ClientFlowLoginV2Poll(ctx context.Context, request ClientFlowLoginV2PollRequestObject) (ClientFlowLoginV2PollResponseObject, error) {
-	panic("implement me")
-}
-
-//nolint:lll,revive,stylecheck
-func (c CoreImpl) OcsGetCapabilities(ctx context.Context, request OcsGetCapabilitiesRequestObject) (OcsGetCapabilitiesResponseObject, error) {
 	panic("implement me")
 }
 
@@ -116,16 +100,6 @@ func (c CoreImpl) AutoCompleteGet(ctx context.Context, request AutoCompleteGetRe
 
 //nolint:lll,revive,stylecheck
 func (c CoreImpl) AppPasswordGetAppPassword(ctx context.Context, request AppPasswordGetAppPasswordRequestObject) (AppPasswordGetAppPasswordResponseObject, error) {
-	panic("implement me")
-}
-
-//nolint:lll,revive,stylecheck
-func (c CoreImpl) NavigationGetAppsNavigation(ctx context.Context, request NavigationGetAppsNavigationRequestObject) (NavigationGetAppsNavigationResponseObject, error) {
-	panic("implement me")
-}
-
-//nolint:lll,revive,stylecheck
-func (c CoreImpl) NavigationGetSettingsNavigation(ctx context.Context, request NavigationGetSettingsNavigationRequestObject) (NavigationGetSettingsNavigationResponseObject, error) {
 	panic("implement me")
 }
 
@@ -191,11 +165,6 @@ func (c CoreImpl) TranslationApiLanguages(ctx context.Context, request Translati
 
 //nolint:lll,revive,stylecheck
 func (c CoreImpl) TranslationApiTranslate(ctx context.Context, request TranslationApiTranslateRequestObject) (TranslationApiTranslateResponseObject, error) {
-	panic("implement me")
-}
-
-//nolint:lll,revive,stylecheck
-func (c CoreImpl) GetStatus(ctx context.Context, request GetStatusRequestObject) (GetStatusResponseObject, error) {
 	panic("implement me")
 }
 
