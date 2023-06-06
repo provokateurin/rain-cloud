@@ -577,37 +577,37 @@ func (t *UnifiedSearchResult_Cursor) UnmarshalJSON(b []byte) error {
 // ServerInterface represents all server handlers.
 type ServerInterface interface {
 	// Returns a guest avatar image response
-	// (GET /index.php/core/avatar/guest/{guestName}/{size})
+	// (GET /index.php/avatar/guest/{guestName}/{size})
 	GuestAvatarGetAvatar(w http.ResponseWriter, r *http.Request, guestName string, size string, params GuestAvatarGetAvatarParams)
 	// Returns a dark guest avatar image response
-	// (GET /index.php/core/avatar/guest/{guestName}/{size}/dark)
+	// (GET /index.php/avatar/guest/{guestName}/{size}/dark)
 	GuestAvatarGetAvatarDark(w http.ResponseWriter, r *http.Request, guestName string, size string)
 	// Get the avatar
-	// (GET /index.php/core/avatar/{userId}/{size})
+	// (GET /index.php/avatar/{userId}/{size})
 	AvatarGetAvatar(w http.ResponseWriter, r *http.Request, userId string, size int64)
 	// Get the dark avatar
-	// (GET /index.php/core/avatar/{userId}/{size}/dark)
+	// (GET /index.php/avatar/{userId}/{size}/dark)
 	AvatarGetAvatarDark(w http.ResponseWriter, r *http.Request, userId string, size int64)
 	// Get a preview by file ID
-	// (GET /index.php/core/core/preview)
+	// (GET /index.php/core/preview)
 	PreviewGetPreviewByFileId(w http.ResponseWriter, r *http.Request, params PreviewGetPreviewByFileIdParams)
 	// Get a preview by file ID
-	// (GET /index.php/core/core/preview.png)
+	// (GET /index.php/core/preview.png)
 	PreviewGetPreview(w http.ResponseWriter, r *http.Request, params PreviewGetPreviewParams)
 	// Get a preview for a reference
-	// (GET /index.php/core/core/references/preview/{referenceId})
+	// (GET /index.php/core/references/preview/{referenceId})
 	ReferencePreview(w http.ResponseWriter, r *http.Request, referenceId string)
 	// Check if the device should be wiped
-	// (POST /index.php/core/core/wipe/check)
+	// (POST /index.php/core/wipe/check)
 	WipeCheckWipe(w http.ResponseWriter, r *http.Request, params WipeCheckWipeParams)
 	// Finish the wipe
-	// (POST /index.php/core/core/wipe/success)
+	// (POST /index.php/core/wipe/success)
 	WipeWipeDone(w http.ResponseWriter, r *http.Request, params WipeWipeDoneParams)
 	// Init a login flow
-	// (POST /index.php/core/login/v2)
+	// (POST /index.php/login/v2)
 	ClientFlowLoginV2Init(w http.ResponseWriter, r *http.Request)
 	// Poll the login flow credentials
-	// (POST /index.php/core/login/v2/poll)
+	// (POST /index.php/login/v2/poll)
 	ClientFlowLoginV2Poll(w http.ResponseWriter, r *http.Request, params ClientFlowLoginV2PollParams)
 	// Get the capabilities
 	// (GET /ocs/v2.php/cloud/capabilities)
@@ -3119,37 +3119,37 @@ func HandlerWithOptions(si ServerInterface, options ChiServerOptions) http.Handl
 	}
 
 	r.Group(func(r chi.Router) {
-		r.Get(options.BaseURL+"/index.php/core/avatar/guest/{guestName}/{size}", wrapper.GuestAvatarGetAvatar)
+		r.Get(options.BaseURL+"/index.php/avatar/guest/{guestName}/{size}", wrapper.GuestAvatarGetAvatar)
 	})
 	r.Group(func(r chi.Router) {
-		r.Get(options.BaseURL+"/index.php/core/avatar/guest/{guestName}/{size}/dark", wrapper.GuestAvatarGetAvatarDark)
+		r.Get(options.BaseURL+"/index.php/avatar/guest/{guestName}/{size}/dark", wrapper.GuestAvatarGetAvatarDark)
 	})
 	r.Group(func(r chi.Router) {
-		r.Get(options.BaseURL+"/index.php/core/avatar/{userId}/{size}", wrapper.AvatarGetAvatar)
+		r.Get(options.BaseURL+"/index.php/avatar/{userId}/{size}", wrapper.AvatarGetAvatar)
 	})
 	r.Group(func(r chi.Router) {
-		r.Get(options.BaseURL+"/index.php/core/avatar/{userId}/{size}/dark", wrapper.AvatarGetAvatarDark)
+		r.Get(options.BaseURL+"/index.php/avatar/{userId}/{size}/dark", wrapper.AvatarGetAvatarDark)
 	})
 	r.Group(func(r chi.Router) {
-		r.Get(options.BaseURL+"/index.php/core/core/preview", wrapper.PreviewGetPreviewByFileId)
+		r.Get(options.BaseURL+"/index.php/core/preview", wrapper.PreviewGetPreviewByFileId)
 	})
 	r.Group(func(r chi.Router) {
-		r.Get(options.BaseURL+"/index.php/core/core/preview.png", wrapper.PreviewGetPreview)
+		r.Get(options.BaseURL+"/index.php/core/preview.png", wrapper.PreviewGetPreview)
 	})
 	r.Group(func(r chi.Router) {
-		r.Get(options.BaseURL+"/index.php/core/core/references/preview/{referenceId}", wrapper.ReferencePreview)
+		r.Get(options.BaseURL+"/index.php/core/references/preview/{referenceId}", wrapper.ReferencePreview)
 	})
 	r.Group(func(r chi.Router) {
-		r.Post(options.BaseURL+"/index.php/core/core/wipe/check", wrapper.WipeCheckWipe)
+		r.Post(options.BaseURL+"/index.php/core/wipe/check", wrapper.WipeCheckWipe)
 	})
 	r.Group(func(r chi.Router) {
-		r.Post(options.BaseURL+"/index.php/core/core/wipe/success", wrapper.WipeWipeDone)
+		r.Post(options.BaseURL+"/index.php/core/wipe/success", wrapper.WipeWipeDone)
 	})
 	r.Group(func(r chi.Router) {
-		r.Post(options.BaseURL+"/index.php/core/login/v2", wrapper.ClientFlowLoginV2Init)
+		r.Post(options.BaseURL+"/index.php/login/v2", wrapper.ClientFlowLoginV2Init)
 	})
 	r.Group(func(r chi.Router) {
-		r.Post(options.BaseURL+"/index.php/core/login/v2/poll", wrapper.ClientFlowLoginV2Poll)
+		r.Post(options.BaseURL+"/index.php/login/v2/poll", wrapper.ClientFlowLoginV2Poll)
 	})
 	r.Group(func(r chi.Router) {
 		r.Get(options.BaseURL+"/ocs/v2.php/cloud/capabilities", wrapper.OcsGetCapabilities)
@@ -4775,37 +4775,37 @@ func (response GetStatus200JSONResponse) VisitGetStatusResponse(w http.ResponseW
 // StrictServerInterface represents all server handlers.
 type StrictServerInterface interface {
 	// Returns a guest avatar image response
-	// (GET /index.php/core/avatar/guest/{guestName}/{size})
+	// (GET /index.php/avatar/guest/{guestName}/{size})
 	GuestAvatarGetAvatar(ctx context.Context, request GuestAvatarGetAvatarRequestObject) (GuestAvatarGetAvatarResponseObject, error)
 	// Returns a dark guest avatar image response
-	// (GET /index.php/core/avatar/guest/{guestName}/{size}/dark)
+	// (GET /index.php/avatar/guest/{guestName}/{size}/dark)
 	GuestAvatarGetAvatarDark(ctx context.Context, request GuestAvatarGetAvatarDarkRequestObject) (GuestAvatarGetAvatarDarkResponseObject, error)
 	// Get the avatar
-	// (GET /index.php/core/avatar/{userId}/{size})
+	// (GET /index.php/avatar/{userId}/{size})
 	AvatarGetAvatar(ctx context.Context, request AvatarGetAvatarRequestObject) (AvatarGetAvatarResponseObject, error)
 	// Get the dark avatar
-	// (GET /index.php/core/avatar/{userId}/{size}/dark)
+	// (GET /index.php/avatar/{userId}/{size}/dark)
 	AvatarGetAvatarDark(ctx context.Context, request AvatarGetAvatarDarkRequestObject) (AvatarGetAvatarDarkResponseObject, error)
 	// Get a preview by file ID
-	// (GET /index.php/core/core/preview)
+	// (GET /index.php/core/preview)
 	PreviewGetPreviewByFileId(ctx context.Context, request PreviewGetPreviewByFileIdRequestObject) (PreviewGetPreviewByFileIdResponseObject, error)
 	// Get a preview by file ID
-	// (GET /index.php/core/core/preview.png)
+	// (GET /index.php/core/preview.png)
 	PreviewGetPreview(ctx context.Context, request PreviewGetPreviewRequestObject) (PreviewGetPreviewResponseObject, error)
 	// Get a preview for a reference
-	// (GET /index.php/core/core/references/preview/{referenceId})
+	// (GET /index.php/core/references/preview/{referenceId})
 	ReferencePreview(ctx context.Context, request ReferencePreviewRequestObject) (ReferencePreviewResponseObject, error)
 	// Check if the device should be wiped
-	// (POST /index.php/core/core/wipe/check)
+	// (POST /index.php/core/wipe/check)
 	WipeCheckWipe(ctx context.Context, request WipeCheckWipeRequestObject) (WipeCheckWipeResponseObject, error)
 	// Finish the wipe
-	// (POST /index.php/core/core/wipe/success)
+	// (POST /index.php/core/wipe/success)
 	WipeWipeDone(ctx context.Context, request WipeWipeDoneRequestObject) (WipeWipeDoneResponseObject, error)
 	// Init a login flow
-	// (POST /index.php/core/login/v2)
+	// (POST /index.php/login/v2)
 	ClientFlowLoginV2Init(ctx context.Context, request ClientFlowLoginV2InitRequestObject) (ClientFlowLoginV2InitResponseObject, error)
 	// Poll the login flow credentials
-	// (POST /index.php/core/login/v2/poll)
+	// (POST /index.php/login/v2/poll)
 	ClientFlowLoginV2Poll(ctx context.Context, request ClientFlowLoginV2PollRequestObject) (ClientFlowLoginV2PollResponseObject, error)
 	// Get the capabilities
 	// (GET /ocs/v2.php/cloud/capabilities)
