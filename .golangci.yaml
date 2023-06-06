@@ -20,8 +20,6 @@ linters-settings:
     check-shadowing: true
   lll:
     line-length: 120
-  misspell:
-    locale: US
 
 linters:
   enable:

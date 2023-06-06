@@ -112,11 +112,6 @@ func (p ProvisioningApiImpl) GroupsGetGroupUsersDetails(ctx context.Context, req
 	panic("implement me")
 }
 
-func (p ProvisioningApiImpl) UsersGetCurrentUser(ctx context.Context, request UsersGetCurrentUserRequestObject) (UsersGetCurrentUserResponseObject, error) {
-	//TODO implement me
-	panic("implement me")
-}
-
 func (p ProvisioningApiImpl) UsersGetEditableFields(ctx context.Context, request UsersGetEditableFieldsRequestObject) (UsersGetEditableFieldsResponseObject, error) {
 	//TODO implement me
 	panic("implement me")
