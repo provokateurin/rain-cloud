@@ -14,60 +14,60 @@ spec:
               service:
                 name: app-provisioning-api
                 port:
-                  number: 8000
+                  number: 8080
           - path: /ocs/v2.php/cloud/apps
             pathType: Prefix
             backend:
               service:
                 name: app-provisioning-api
                 port:
-                  number: 8000
+                  number: 8080
           - path: /ocs/v2.php/cloud/groups
             pathType: Prefix
             backend:
               service:
                 name: app-provisioning-api
                 port:
-                  number: 8000
+                  number: 8080
           - path: /ocs/v2.php/cloud/user
             pathType: Prefix
             backend:
               service:
                 name: app-provisioning-api
                 port:
-                  number: 8000
+                  number: 8080
           - path: /ocs/v2.php/cloud/users
             pathType: Prefix
             backend:
               service:
                 name: app-provisioning-api
                 port:
-                  number: 8000
+                  number: 8080
           - path: /apps/theming
             pathType: Prefix
             backend:
               service:
                 name: app-theming
                 port:
-                  number: 8000
+                  number: 8080
           - path: /index.php/apps/theming
             pathType: Prefix
             backend:
               service:
                 name: app-theming
                 port:
-                  number: 8000
+                  number: 8080
           - path: /ocs/v2.php/apps/theming
             pathType: Prefix
             backend:
               service:
                 name: app-theming
                 port:
-                  number: 8000
+                  number: 8080
           - path: /
             pathType: Prefix
             backend:
               service:
                 name: app-core
                 port:
-                  number: 8000
+                  number: 8080
