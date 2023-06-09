@@ -12,19 +12,23 @@ build:
   - image: app-provisioning_api
     ko:
       flags:
-        - -tags=provisioning_api
+        - -tags=app,provisioning_api
+      main: ./pkg/cmd/app
   - image: app-theming
     ko:
       flags:
-        - -tags=theming
+        - -tags=app,theming
+      main: ./pkg/cmd/app
   - image: app-user_status
     ko:
       flags:
-        - -tags=user_status
+        - -tags=app,user_status
+      main: ./pkg/cmd/app
   - image: app-core
     ko:
       flags:
-        - -tags=core
+        - -tags=app,core
+      main: ./pkg/cmd/app
   - image: controller
     ko:
       main: ./pkg/controller

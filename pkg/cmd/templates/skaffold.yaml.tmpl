@@ -13,7 +13,8 @@ build:
   - image: app-{{ .ID }}
     ko:
       flags:
-        - -tags={{ .ID }}
+        - -tags=app,{{ .ID }}
+      main: ./pkg/cmd/app
   {{- end }}
   - image: controller
     ko:

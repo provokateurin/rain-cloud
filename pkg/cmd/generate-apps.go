@@ -20,6 +20,9 @@ var templateIngress string
 //go:embed templates/manifest.yaml.tmpl
 var templateManifest string
 
+//go:embed templates/include.go.tmpl
+var templateInclude string
+
 //go:embed templates/app.go.tmpl
 var templateApp string
 
@@ -103,7 +106,12 @@ func main() {
 			panic(err)
 		}
 
-		err = writeTemplate(fmt.Sprintf("app-%s.gen.go", app.ID), templateApp, app)
+		err = writeTemplate(fmt.Sprintf("pkg/include/%s.gen.go", app.ID), templateInclude, app)
+		if err != nil {
+			panic(err)
+		}
+
+		err = writeTemplate(fmt.Sprintf("pkg/api/%s/app.gen.go", app.ID), templateApp, app)
 		if err != nil {
 			panic(err)
 		}

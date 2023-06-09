@@ -1,16 +1,15 @@
-//go:build {{ .ID }}
+//go:build app
 
-package main
+package {{ .ID }}api
 
 import (
 	"github.com/go-chi/chi/v5"
-	{{ .ID }}api "github.com/provokateurin/rain-cloud/pkg/api/{{ .ID }}"
 	"github.com/provokateurin/rain-cloud/pkg/common"
 )
 
 func init() {
 	common.RegisterApp("{{ .ID }}", func(router chi.Router) {
-		var {{ .ID }}API {{ .ID }}api.{{ .InterfacePrefix }}Impl
-		{{ .ID }}api.HandlerFromMux({{ .ID }}api.NewStrictHandler(&{{ .ID }}API, nil), router)
+		var api {{ .InterfacePrefix }}Impl
+		HandlerFromMux(NewStrictHandler(&api, nil), router)
 	})
 }

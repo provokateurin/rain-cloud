@@ -2,6 +2,7 @@ package main
 
 import (
 	"github.com/provokateurin/rain-cloud/pkg/common"
+	_ "github.com/provokateurin/rain-cloud/pkg/include"
 )
 
 func main() {
