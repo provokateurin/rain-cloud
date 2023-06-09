@@ -42,7 +42,7 @@ func main() {
 			InterfacePrefix: "ProvisioningApi",
 			Spec:            "nextcloud/server/apps/provisioning_api/openapi.json",
 			PathPrefixes: append(
-				pathPrefixesForApp("provisioning_api", false, true),
+				pathPrefixesForApp("apps/provisioning_api", false, true),
 				"/ocs/v2.php/cloud/apps",
 				"/ocs/v2.php/cloud/groups",
 				"/ocs/v2.php/cloud/user",
@@ -54,7 +54,7 @@ func main() {
 			KubernetesID:    "theming",
 			InterfacePrefix: "Theming",
 			Spec:            "nextcloud/server/apps/theming/openapi.json",
-			PathPrefixes:    pathPrefixesForApp("theming", true, true),
+			PathPrefixes:    pathPrefixesForApp("apps/theming", true, true),
 		},
 		// Core has to be last
 		{
@@ -62,7 +62,21 @@ func main() {
 			KubernetesID:    "core",
 			InterfacePrefix: "Core",
 			Spec:            "nextcloud/server/core/openapi.json",
-			PathPrefixes:    []string{"/"},
+			PathPrefixes: append(concatMultipleSlices([][]string{
+				pathPrefixesForApp("avatar", true, false),
+				pathPrefixesForApp("core", true, false),
+				pathPrefixesForApp("login", true, false),
+				pathPrefixesForApp("cloud", false, true),
+				pathPrefixesForApp("collaboration", false, true),
+				pathPrefixesForApp("core", false, true),
+				pathPrefixesForApp("hovercard", false, true),
+				pathPrefixesForApp("profile", false, true),
+				pathPrefixesForApp("references", false, true),
+				pathPrefixesForApp("search", false, true),
+				pathPrefixesForApp("translation", false, true),
+			}),
+				"/status.php",
+			),
 		},
 	}
 
@@ -153,17 +167,35 @@ func pathPrefixesForApp(name string, index, ocs bool) []string {
 	if index {
 		prefixes = append(
 			prefixes,
-			fmt.Sprintf("/apps/%s", name),
-			fmt.Sprintf("/index.php/apps/%s", name),
+			fmt.Sprintf("/%s", name),
+			fmt.Sprintf("/index.php/%s", name),
 		)
 	}
 
 	if ocs {
 		prefixes = append(
 			prefixes,
-			fmt.Sprintf("/ocs/v2.php/apps/%s", name),
+			fmt.Sprintf("/ocs/v2.php/%s", name),
 		)
 	}
 
 	return prefixes
+}
+
+func concatMultipleSlices[T any](slices [][]T) []T {
+	var totalLen int
+
+	for _, s := range slices {
+		totalLen += len(s)
+	}
+
+	result := make([]T, totalLen)
+
+	var i int
+
+	for _, s := range slices {
+		i += copy(result[i:], s)
+	}
+
+	return result
 }

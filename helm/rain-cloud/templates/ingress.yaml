@@ -64,7 +64,105 @@ spec:
                 name: app-theming
                 port:
                   number: 8080
-          - path: /
+          - path: /avatar
+            pathType: Prefix
+            backend:
+              service:
+                name: app-core
+                port:
+                  number: 8080
+          - path: /index.php/avatar
+            pathType: Prefix
+            backend:
+              service:
+                name: app-core
+                port:
+                  number: 8080
+          - path: /core
+            pathType: Prefix
+            backend:
+              service:
+                name: app-core
+                port:
+                  number: 8080
+          - path: /index.php/core
+            pathType: Prefix
+            backend:
+              service:
+                name: app-core
+                port:
+                  number: 8080
+          - path: /login
+            pathType: Prefix
+            backend:
+              service:
+                name: app-core
+                port:
+                  number: 8080
+          - path: /index.php/login
+            pathType: Prefix
+            backend:
+              service:
+                name: app-core
+                port:
+                  number: 8080
+          - path: /ocs/v2.php/cloud
+            pathType: Prefix
+            backend:
+              service:
+                name: app-core
+                port:
+                  number: 8080
+          - path: /ocs/v2.php/collaboration
+            pathType: Prefix
+            backend:
+              service:
+                name: app-core
+                port:
+                  number: 8080
+          - path: /ocs/v2.php/core
+            pathType: Prefix
+            backend:
+              service:
+                name: app-core
+                port:
+                  number: 8080
+          - path: /ocs/v2.php/hovercard
+            pathType: Prefix
+            backend:
+              service:
+                name: app-core
+                port:
+                  number: 8080
+          - path: /ocs/v2.php/profile
+            pathType: Prefix
+            backend:
+              service:
+                name: app-core
+                port:
+                  number: 8080
+          - path: /ocs/v2.php/references
+            pathType: Prefix
+            backend:
+              service:
+                name: app-core
+                port:
+                  number: 8080
+          - path: /ocs/v2.php/search
+            pathType: Prefix
+            backend:
+              service:
+                name: app-core
+                port:
+                  number: 8080
+          - path: /ocs/v2.php/translation
+            pathType: Prefix
+            backend:
+              service:
+                name: app-core
+                port:
+                  number: 8080
+          - path: /status.php
             pathType: Prefix
             backend:
               service:
