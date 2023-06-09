@@ -64,6 +64,13 @@ spec:
                 name: app-theming
                 port:
                   number: 8080
+          - path: /ocs/v2.php/apps/user_status
+            pathType: Prefix
+            backend:
+              service:
+                name: app-user-status
+                port:
+                  number: 8080
           - path: /avatar
             pathType: Prefix
             backend:

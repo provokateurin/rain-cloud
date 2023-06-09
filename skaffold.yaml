@@ -17,6 +17,10 @@ build:
     ko:
       flags:
         - -tags=theming
+  - image: app-user_status
+    ko:
+      flags:
+        - -tags=user_status
   - image: app-core
     ko:
       flags:
@@ -37,5 +41,6 @@ deploy:
         setValueTemplates:
           apps.provisioning_api.image: app-provisioning_api
           apps.theming.image: app-theming
+          apps.user_status.image: app-user_status
           apps.core.image: app-core
           frontend.image: frontend

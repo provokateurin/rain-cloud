@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "rain-cloud.fullname" . }}-app-user-status
+  labels:
+    {{- include "rain-cloud.labels" . | nindent 4 }}
+spec:
+  selector:
+    matchLabels:
+      app: app-user_status
+      {{- include "rain-cloud.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        app: app-user_status
+        {{- include "rain-cloud.selectorLabels" . | nindent 8 }}
+    spec:
+      containers:
+        - name: app-user-status
+          image: "{{ .Values.apps.user_status.image }}"
+          ports:
+            - containerPort: 8080
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: app-user-status
+spec:
+  selector:
+    app: app-user_status
+  ports:
+    - port: 8080
+      targetPort: 8080

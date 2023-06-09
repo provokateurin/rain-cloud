@@ -56,6 +56,13 @@ func main() {
 			Spec:            "nextcloud/server/apps/theming/openapi.json",
 			PathPrefixes:    pathPrefixesForApp("apps/theming", true, true),
 		},
+		{
+			ID:              "user_status",
+			KubernetesID:    "user-status",
+			InterfacePrefix: "UserStatus",
+			Spec:            "nextcloud/server/apps/user_status/openapi.json",
+			PathPrefixes:    pathPrefixesForApp("apps/user_status", false, true),
+		},
 		// Core has to be last
 		{
 			ID:              "core",
