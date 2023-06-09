@@ -27,16 +27,6 @@ func (c CoreImpl) WipeWipeDone(ctx context.Context, request WipeWipeDoneRequestO
 	panic("implement me")
 }
 
-func (c CoreImpl) ClientFlowLoginV2Init(ctx context.Context, request ClientFlowLoginV2InitRequestObject) (ClientFlowLoginV2InitResponseObject, error) {
-	//TODO implement me
-	panic("implement me")
-}
-
-func (c CoreImpl) ClientFlowLoginV2Poll(ctx context.Context, request ClientFlowLoginV2PollRequestObject) (ClientFlowLoginV2PollResponseObject, error) {
-	//TODO implement me
-	panic("implement me")
-}
-
 func (c CoreImpl) CollaborationResourcesSearchCollections(ctx context.Context, request CollaborationResourcesSearchCollectionsRequestObject) (CollaborationResourcesSearchCollectionsResponseObject, error) {
 	//TODO implement me
 	panic("implement me")
