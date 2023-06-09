@@ -132,6 +132,9 @@ func main() {
 				ChiServer: true,
 				Strict:    true,
 			},
+			OutputOptions: codegen.OutputOptions{
+				SkipPrune: true,
+			},
 		})
 		if err != nil {
 			panic(err)

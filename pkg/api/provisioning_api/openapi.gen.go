@@ -61,6 +61,16 @@ type AppInfo struct {
 	Website            *map[string]interface{} `json:"website"`
 }
 
+// Capabilities defines model for Capabilities.
+type Capabilities struct {
+	ProvisioningApi struct {
+		AccountPropertyScopesFederatedEnabled bool   `json:"AccountPropertyScopesFederatedEnabled"`
+		AccountPropertyScopesPublishedEnabled bool   `json:"AccountPropertyScopesPublishedEnabled"`
+		AccountPropertyScopesVersion          int64  `json:"AccountPropertyScopesVersion"`
+		Version                               string `json:"version"`
+	} `json:"provisioning_api"`
+}
+
 // GroupDetails defines model for GroupDetails.
 type GroupDetails struct {
 	CanAdd      bool                   `json:"canAdd"`

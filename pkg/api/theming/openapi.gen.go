@@ -35,6 +35,26 @@ type OCSMeta struct {
 	Totalitems   *string `json:"totalitems,omitempty"`
 }
 
+// PublicCapabilities defines model for PublicCapabilities.
+type PublicCapabilities struct {
+	Theming struct {
+		Background         string `json:"background"`
+		BackgroundDefault  bool   `json:"background-default"`
+		BackgroundPlain    bool   `json:"background-plain"`
+		Color              string `json:"color"`
+		ColorElement       string `json:"color-element"`
+		ColorElementBright string `json:"color-element-bright"`
+		ColorElementDark   string `json:"color-element-dark"`
+		ColorText          string `json:"color-text"`
+		Favicon            string `json:"favicon"`
+		Logo               string `json:"logo"`
+		Logoheader         string `json:"logoheader"`
+		Name               string `json:"name"`
+		Slogan             string `json:"slogan"`
+		Url                string `json:"url"`
+	} `json:"theming"`
+}
+
 // UserThemeGetBackgroundParams defines parameters for UserThemeGetBackground.
 type UserThemeGetBackgroundParams struct {
 	OCSAPIRequest string `json:"OCS-APIRequest"`

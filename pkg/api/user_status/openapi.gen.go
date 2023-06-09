@@ -30,6 +30,15 @@ const (
 	Week ClearAtTimeType = "week"
 )
 
+// Capabilities defines model for Capabilities.
+type Capabilities struct {
+	UserStatus struct {
+		Enabled       bool `json:"enabled"`
+		Restore       bool `json:"restore"`
+		SupportsEmoji bool `json:"supports_emoji"`
+	} `json:"user_status"`
+}
+
 // ClearAt defines model for ClearAt.
 type ClearAt struct {
 	Time ClearAt_Time `json:"time"`
