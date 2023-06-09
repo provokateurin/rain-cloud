@@ -1,6 +1,7 @@
 run:
   skip-files:
     - ".*\\.gen\\.go$"
+    - ".*\\.pb\\.go$"
     - "stub.go"
 output:
   sort-results: true

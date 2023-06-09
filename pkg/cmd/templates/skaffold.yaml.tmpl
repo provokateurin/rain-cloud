@@ -15,6 +15,9 @@ build:
       flags:
         - -tags={{ .ID }}
   {{- end }}
+  - image: controller
+    ko:
+      main: ./pkg/controller
   - image: frontend
     context: nextcloud/neon
     docker:
@@ -32,4 +35,5 @@ deploy:
           {{- range . }}
           apps.{{ .ID }}.image: app-{{ .ID }}
           {{- end }}
+          controller.image: controller
           frontend.image: frontend
