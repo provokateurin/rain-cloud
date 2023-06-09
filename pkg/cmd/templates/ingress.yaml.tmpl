@@ -19,3 +19,10 @@ spec:
                   number: 8080
           {{- end }}
           {{- end }}
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: frontend
+                port:
+                  number: 8080

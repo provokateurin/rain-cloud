@@ -7,6 +7,7 @@ build:
   local:
     concurrency: 0
     push: true
+    useBuildkit: true
   artifacts:
   - image: app-provisioning_api
     ko:
@@ -20,6 +21,10 @@ build:
     ko:
       flags:
         - -tags=core
+  - image: frontend
+    context: nextcloud/neon
+    docker:
+      dockerfile: nextcloud/neon/packages/app/Dockerfile
 
 deploy:
   kubeContext: k3d-rain-cloud-local
@@ -33,3 +38,4 @@ deploy:
           apps.provisioning_api.image: app-provisioning_api
           apps.theming.image: app-theming
           apps.core.image: app-core
+          frontend.image: frontend
