@@ -2,6 +2,7 @@ package coreapi
 
 import "context"
 
+//nolint:lll,revive
 func (c CoreImpl) ClientFlowLoginV2Init(ctx context.Context, request ClientFlowLoginV2InitRequestObject) (ClientFlowLoginV2InitResponseObject, error) {
 	return ClientFlowLoginV2Init200JSONResponse{
 		Login: "https://example.com",
@@ -15,6 +16,7 @@ func (c CoreImpl) ClientFlowLoginV2Init(ctx context.Context, request ClientFlowL
 	}, nil
 }
 
+//nolint:lll,revive
 func (c CoreImpl) ClientFlowLoginV2Poll(ctx context.Context, request ClientFlowLoginV2PollRequestObject) (ClientFlowLoginV2PollResponseObject, error) {
 	return ClientFlowLoginV2Poll200JSONResponse{
 		AppPassword: "stub",
