@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "rain-cloud.fullname" . }}-app-files
+  labels:
+    {{- include "rain-cloud.labels" . | nindent 4 }}
+spec:
+  selector:
+    matchLabels:
+      app: app-files
+      {{- include "rain-cloud.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        app: app-files
+        {{- include "rain-cloud.selectorLabels" . | nindent 8 }}
+    spec:
+      containers:
+        - name: app-files
+          image: "{{ .Values.apps.files.image }}"
+          ports:
+            - containerPort: 8080
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: app-files
+spec:
+  selector:
+    app: app-files
+  ports:
+    - port: 8080
+      targetPort: 8080

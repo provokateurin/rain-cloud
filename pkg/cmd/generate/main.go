@@ -39,6 +39,15 @@ type App struct {
 func main() {
 	apps := []App{
 		{
+			ID:              "files",
+			KubernetesID:    "files",
+			InterfacePrefix: "Files",
+			Spec:            nil,
+			PathPrefixes: []string{
+				"/remote.php/dav/files",
+			},
+		},
+		{
 			ID:              "provisioning_api",
 			KubernetesID:    "provisioning-api",
 			InterfacePrefix: "ProvisioningApi",

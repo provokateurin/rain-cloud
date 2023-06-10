@@ -9,6 +9,11 @@ build:
     push: true
     useBuildkit: true
   artifacts:
+  - image: app-files
+    ko:
+      flags:
+        - -tags=files
+      main: ./pkg/cmd/app
   - image: app-provisioning_api
     ko:
       flags:
@@ -43,6 +48,7 @@ deploy:
         namespace: rain-cloud
         createNamespace: true
         setValueTemplates:
+          apps.files.image: app-files
           apps.provisioning_api.image: app-provisioning_api
           apps.theming.image: app-theming
           apps.user_status.image: app-user_status
