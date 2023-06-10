@@ -1,8 +1,10 @@
 package theming
 
 import (
-	"github.com/go-chi/chi/v5"
 	"github.com/provokateurin/rain-cloud/pkg/common"
+	"github.com/provokateurin/rain-cloud/pkg/registration"
+
+	"github.com/go-chi/chi/v5"
 )
 
 type ThemingAPI struct{}
@@ -11,12 +13,11 @@ var _ StrictServerInterface = (*ThemingAPI)(nil)
 
 type ThemingRegistration struct {}
 
-var _ common.RegistrationInterface = (*ThemingRegistration)(nil)
+var _ registration.StrictServerInterface = (*ThemingRegistration)(nil)
 
 func init() {
-    var registration ThemingRegistration
-	common.RegisterApp("theming", registration, func(router chi.Router) {
-		var api ThemingAPI
-		HandlerFromMux(NewStrictHandler(&api, nil), router)
+	common.RegisterApp("theming", func(router chi.Router) {
+		HandlerFromMux(NewStrictHandler(&ThemingAPI{}, nil), router)
+        registration.HandlerFromMux(registration.NewStrictHandler(&ThemingRegistration{}, nil), router)
 	})
 }

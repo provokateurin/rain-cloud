@@ -29,9 +29,6 @@ build:
       flags:
         - -tags=core
       main: ./pkg/cmd/app
-  - image: controller
-    ko:
-      main: ./pkg/controller
   - image: frontend
     context: nextcloud/neon
     docker:
@@ -50,5 +47,4 @@ deploy:
           apps.theming.image: app-theming
           apps.user_status.image: app-user_status
           apps.core.image: app-core
-          controller.image: controller
           frontend.image: frontend

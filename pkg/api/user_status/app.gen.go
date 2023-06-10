@@ -1,8 +1,10 @@
 package user_status
 
 import (
-	"github.com/go-chi/chi/v5"
 	"github.com/provokateurin/rain-cloud/pkg/common"
+	"github.com/provokateurin/rain-cloud/pkg/registration"
+
+	"github.com/go-chi/chi/v5"
 )
 
 type UserStatusAPI struct{}
@@ -11,12 +13,11 @@ var _ StrictServerInterface = (*UserStatusAPI)(nil)
 
 type UserStatusRegistration struct {}
 
-var _ common.RegistrationInterface = (*UserStatusRegistration)(nil)
+var _ registration.StrictServerInterface = (*UserStatusRegistration)(nil)
 
 func init() {
-    var registration UserStatusRegistration
-	common.RegisterApp("user_status", registration, func(router chi.Router) {
-		var api UserStatusAPI
-		HandlerFromMux(NewStrictHandler(&api, nil), router)
+	common.RegisterApp("user_status", func(router chi.Router) {
+		HandlerFromMux(NewStrictHandler(&UserStatusAPI{}, nil), router)
+        registration.HandlerFromMux(registration.NewStrictHandler(&UserStatusRegistration{}, nil), router)
 	})
 }

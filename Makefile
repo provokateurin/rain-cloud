@@ -15,28 +15,14 @@ k9s:
 	k9s
 
 .PHONY: lint
-lint: lint-go lint-protobuf
-
-.PHONY: lint-go
-lint-go:
+lint:
 	go run github.com/golangci/golangci-lint/cmd/golangci-lint@v1.53.2 run
 
-.PHONY: lint-protobuf
-lint-protobuf:
-	(cd pkg/controller && go run github.com/bufbuild/buf/cmd/buf@v1.21.0 lint)
-
 .PHONY: generate
-generate: generate-apps generate-protobuf
-
-.PHONY: generate-apps
-generate-apps:
-	go run pkg/cmd/generate-apps.go
+generate:
+	go run pkg/cmd/generate/main.go
 	sed -i "s/GroupsGetGroupUsersDetails200JSONResponse_Ocs_Data_Users_AdditionalProperties/interface{}/" pkg/api/provisioning_api/openapi.gen.go
 	sed -i "s/UsersGetUsersDetails200JSONResponse_Ocs_Data_Users_AdditionalProperties/interface{}/" pkg/api/provisioning_api/openapi.gen.go
-
-.PHONY: generate-protobuf
-generate-protobuf:
-	(cd pkg/controller && go run github.com/bufbuild/buf/cmd/buf@v1.21.0 generate)
 
 .PHONY: clean
 clean:

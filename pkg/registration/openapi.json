@@ -1,0 +1,46 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "version": "0.0.1"
+  },
+  "components": {
+    "schemas": {
+      "AppRegistration": {
+        "type": "object",
+        "required": [
+          "id"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "capabilities": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object",
+              "additionalProperties": true
+            }
+          }
+        }
+      }
+    }
+  },
+  "paths": {
+    "/rain-cloud/registration": {
+      "get": {
+        "operationId": "get-registration",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppRegistration"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

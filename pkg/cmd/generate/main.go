@@ -113,7 +113,8 @@ func main() {
 			panic(err)
 		}
 
-		spec, err := openapi3.NewLoader().LoadFromFile(app.Spec)
+		var spec *openapi3.T
+		spec, err = openapi3.NewLoader().LoadFromFile(app.Spec)
 		if err != nil {
 			panic(err)
 		}
@@ -125,7 +126,8 @@ func main() {
 		}
 		spec.Paths = paths
 
-		code, err := codegen.Generate(spec, codegen.Configuration{
+		var code string
+		code, err = codegen.Generate(spec, codegen.Configuration{
 			PackageName: app.ID,
 			Generate: codegen.GenerateOptions{
 				Models:    true,
@@ -144,6 +146,29 @@ func main() {
 		if err != nil {
 			panic(err)
 		}
+	}
+
+	spec, err := openapi3.NewLoader().LoadFromFile("pkg/registration/openapi.json")
+	if err != nil {
+		panic(err)
+	}
+
+	code, err := codegen.Generate(spec, codegen.Configuration{
+		PackageName: "registration",
+		Generate: codegen.GenerateOptions{
+			Models:    true,
+			ChiServer: true,
+			Strict:    true,
+			Client:    true,
+		},
+	})
+	if err != nil {
+		panic(err)
+	}
+	//nolint:gosec
+	err = os.WriteFile("pkg/registration/openapi.gen.go", []byte(code), 0o644)
+	if err != nil {
+		panic(err)
 	}
 }
 

@@ -1,8 +1,10 @@
 package core
 
 import (
-	"github.com/go-chi/chi/v5"
 	"github.com/provokateurin/rain-cloud/pkg/common"
+	"github.com/provokateurin/rain-cloud/pkg/registration"
+
+	"github.com/go-chi/chi/v5"
 )
 
 type CoreAPI struct{}
@@ -11,12 +13,11 @@ var _ StrictServerInterface = (*CoreAPI)(nil)
 
 type CoreRegistration struct {}
 
-var _ common.RegistrationInterface = (*CoreRegistration)(nil)
+var _ registration.StrictServerInterface = (*CoreRegistration)(nil)
 
 func init() {
-    var registration CoreRegistration
-	common.RegisterApp("core", registration, func(router chi.Router) {
-		var api CoreAPI
-		HandlerFromMux(NewStrictHandler(&api, nil), router)
+	common.RegisterApp("core", func(router chi.Router) {
+		HandlerFromMux(NewStrictHandler(&CoreAPI{}, nil), router)
+        registration.HandlerFromMux(registration.NewStrictHandler(&CoreRegistration{}, nil), router)
 	})
 }
