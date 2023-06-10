@@ -20,6 +20,28 @@
               "type": "object",
               "additionalProperties": true
             }
+          },
+          "navigation": {
+            "$ref": "#/components/schemas/NavigationEntry"
+          }
+        }
+      },
+      "NavigationEntry": {
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "order"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "order": {
+            "type": "integer"
           }
         }
       }

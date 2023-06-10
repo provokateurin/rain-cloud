@@ -5,7 +5,8 @@ import (
 	"fmt"
 )
 
-func GenerateRegistrationResponse(id string, capabilities any) (*GetRegistration200JSONResponse, error) {
+//nolint:lll
+func GenerateRegistrationResponse(id string, capabilities any, navigation *NavigationEntry) (*GetRegistration200JSONResponse, error) {
 	var capabilitiesPointer *map[string]map[string]interface{}
 	if capabilities != nil {
 		bytes, err := json.Marshal(&capabilities)
@@ -25,5 +26,6 @@ func GenerateRegistrationResponse(id string, capabilities any) (*GetRegistration
 	return &GetRegistration200JSONResponse{
 		Id:           id,
 		Capabilities: capabilitiesPointer,
+		Navigation:   navigation,
 	}, nil
 }

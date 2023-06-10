@@ -57,7 +57,7 @@ func (c ThemingRegistration) GetRegistration(ctx context.Context, request regist
 		}),
 	}
 
-	r, err := registration.GenerateRegistrationResponse("theming", capabilities)
+	r, err := registration.GenerateRegistrationResponse("theming", capabilities, nil)
 	if err != nil {
 		panic(err)
 	}

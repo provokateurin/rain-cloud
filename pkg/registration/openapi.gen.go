@@ -20,6 +20,14 @@ import (
 type AppRegistration struct {
 	Capabilities *map[string]map[string]interface{} `json:"capabilities,omitempty"`
 	Id           string                             `json:"id"`
+	Navigation   *NavigationEntry                   `json:"navigation,omitempty"`
+}
+
+// NavigationEntry defines model for NavigationEntry.
+type NavigationEntry struct {
+	Id    string `json:"id"`
+	Name  string `json:"name"`
+	Order int    `json:"order"`
 }
 
 // RequestEditorFn  is the function signature for the RequestEditor callback function

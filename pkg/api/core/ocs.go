@@ -9,7 +9,7 @@ import (
 
 //nolint:lll,revive
 func (c CoreAPI) OcsGetCapabilities(ctx context.Context, request OcsGetCapabilitiesRequestObject) (OcsGetCapabilitiesResponseObject, error) {
-	capabilities, err := service.CoreService.FetchCapabilities(ctx)
+	capabilities, err := service.CoreService.GetCapabilities(ctx)
 	if err != nil {
 		panic(err)
 	}

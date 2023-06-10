@@ -86,7 +86,7 @@ func (s *coreService) getKubernetesClient() (*kubernetes.Clientset, error) {
 	return s.kubernetesClientset, nil
 }
 
-func (s *coreService) getRegistrations(ctx context.Context) ([]*registration.AppRegistration, error) {
+func (s *coreService) GetRegistrations(ctx context.Context) ([]*registration.AppRegistration, error) {
 	kubernetesClient, err := s.getKubernetesClient()
 	if err != nil {
 		return nil, err
@@ -125,8 +125,8 @@ func (s *coreService) getRegistrations(ctx context.Context) ([]*registration.App
 	return registrations, nil
 }
 
-func (s *coreService) FetchCapabilities(ctx context.Context) (map[string]map[string]interface{}, error) {
-	registrations, err := s.getRegistrations(ctx)
+func (s *coreService) GetCapabilities(ctx context.Context) (map[string]map[string]interface{}, error) {
+	registrations, err := s.GetRegistrations(ctx)
 	if err != nil {
 		return nil, fmt.Errorf("failed to get registrations: %w", err)
 	}
@@ -147,4 +147,20 @@ func (s *coreService) FetchCapabilities(ctx context.Context) (map[string]map[str
 	}
 
 	return capabilities, nil
+}
+
+func (s *coreService) GetNavigations(ctx context.Context) ([]*registration.NavigationEntry, error) {
+	registrations, err := s.GetRegistrations(ctx)
+	if err != nil {
+		return nil, fmt.Errorf("failed to get registrations: %w", err)
+	}
+
+	var entries []*registration.NavigationEntry
+	for _, r := range registrations {
+		if r.Navigation != nil {
+			entries = append(entries, r.Navigation)
+		}
+	}
+
+	return entries, nil
 }
