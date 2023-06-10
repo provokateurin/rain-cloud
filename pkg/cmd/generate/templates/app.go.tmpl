@@ -3,8 +3,6 @@ package {{ .ID }}
 import (
 	"github.com/provokateurin/rain-cloud/pkg/common"
 	"github.com/provokateurin/rain-cloud/pkg/registration"
-
-	"github.com/go-chi/chi/v5"
 )
 
 type {{ .InterfacePrefix }}API struct{}
@@ -16,8 +14,6 @@ type {{ .InterfacePrefix }}Registration struct {}
 var _ registration.StrictServerInterface = (*{{ .InterfacePrefix }}Registration)(nil)
 
 func init() {
-	common.RegisterApp("{{ .ID }}", func(router chi.Router) {
-		HandlerFromMux(NewStrictHandler(&{{ .InterfacePrefix }}API{}, nil), router)
-        registration.HandlerFromMux(registration.NewStrictHandler(&{{ .InterfacePrefix }}Registration{}, nil), router)
-	})
+    HandlerFromMux(NewStrictHandler(&{{ .InterfacePrefix }}API{}, nil), common.Router)
+    registration.HandlerFromMux(registration.NewStrictHandler(&{{ .InterfacePrefix }}Registration{}, nil), common.Router)
 }

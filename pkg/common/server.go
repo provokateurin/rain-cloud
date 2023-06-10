@@ -10,20 +10,20 @@ import (
 )
 
 //nolint:gochecknoglobals
-var router = chi.NewRouter()
+var Router = chi.NewRouter()
 
 //nolint:gochecknoinits
 func init() {
-	router.Use(middleware.RequestID)
-	router.Use(middleware.RealIP)
-	router.Use(middleware.Logger)
-	router.Use(middleware.Recoverer)
-	router.Use(middleware.PathRewrite("/index.php", ""))
+	Router.Use(middleware.RequestID)
+	Router.Use(middleware.RealIP)
+	Router.Use(middleware.Logger)
+	Router.Use(middleware.Recoverer)
+	Router.Use(middleware.PathRewrite("/index.php", ""))
 }
 
 func Serve(port int) error {
 	server := &http.Server{
-		Handler:      router,
+		Handler:      Router,
 		ReadTimeout:  10 * time.Second,
 		WriteTimeout: 10 * time.Second,
 		Addr:         fmt.Sprintf(":%d", port),
