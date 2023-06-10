@@ -1,4 +1,4 @@
-package provisioning_apiapi
+package provisioning_api
 
 import "context"
 

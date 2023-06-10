@@ -126,7 +126,7 @@ func main() {
 		spec.Paths = paths
 
 		code, err := codegen.Generate(spec, codegen.Configuration{
-			PackageName: fmt.Sprintf("%sapi", app.ID),
+			PackageName: app.ID,
 			Generate: codegen.GenerateOptions{
 				Models:    true,
 				ChiServer: true,

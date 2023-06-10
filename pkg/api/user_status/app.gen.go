@@ -1,4 +1,4 @@
-package user_statusapi
+package user_status
 
 import (
 	"github.com/go-chi/chi/v5"

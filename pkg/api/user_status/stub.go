@@ -1,4 +1,4 @@
-package user_statusapi
+package user_status
 
 import "context"
 

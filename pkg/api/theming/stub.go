@@ -1,4 +1,4 @@
-package themingapi
+package theming
 
 import "context"
 

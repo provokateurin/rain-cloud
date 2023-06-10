@@ -1,4 +1,4 @@
-package themingapi
+package theming
 
 import (
 	"github.com/go-chi/chi/v5"

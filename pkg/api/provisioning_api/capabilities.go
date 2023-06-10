@@ -1,5 +1,5 @@
 //nolint:revive,stylecheck
-package provisioning_apiapi
+package provisioning_api
 
 func (c ProvisioningApiRegistration) GetCapabilities() *string {
 	return nil
