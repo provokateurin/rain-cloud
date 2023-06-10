@@ -60,8 +60,6 @@ linters:
     - revive
     - rowserrcheck
     - staticcheck
-    - stylecheck
-    - tagliatelle
     - testpackage
     - thelper
     - typecheck

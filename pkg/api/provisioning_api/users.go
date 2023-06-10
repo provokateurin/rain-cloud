@@ -1,4 +1,4 @@
-//nolint:revive,stylecheck
+//nolint:revive
 package provisioning_api
 
 import (
