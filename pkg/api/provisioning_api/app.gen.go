@@ -1,5 +1,3 @@
-//go:build app
-
 package provisioning_apiapi
 
 import (
@@ -7,9 +5,18 @@ import (
 	"github.com/provokateurin/rain-cloud/pkg/common"
 )
 
+type ProvisioningApiAPI struct{}
+
+var _ StrictServerInterface = (*ProvisioningApiAPI)(nil)
+
+type ProvisioningApiRegistration struct {}
+
+var _ common.RegistrationInterface = (*ProvisioningApiRegistration)(nil)
+
 func init() {
-	common.RegisterApp("provisioning_api", func(router chi.Router) {
-		var api ProvisioningApiImpl
+    var registration ProvisioningApiRegistration
+	common.RegisterApp("provisioning_api", registration, func(router chi.Router) {
+		var api ProvisioningApiAPI
 		HandlerFromMux(NewStrictHandler(&api, nil), router)
 	})
 }

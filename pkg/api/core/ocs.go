@@ -7,7 +7,7 @@ import (
 )
 
 //nolint:lll,revive
-func (c CoreImpl) OcsGetCapabilities(ctx context.Context, request OcsGetCapabilitiesRequestObject) (OcsGetCapabilitiesResponseObject, error) {
+func (c CoreAPI) OcsGetCapabilities(ctx context.Context, request OcsGetCapabilitiesRequestObject) (OcsGetCapabilitiesResponseObject, error) {
 	return OcsGetCapabilities200JSONResponse{Ocs: struct {
 		Data struct {
 			Capabilities map[string]map[string]interface{} `json:"capabilities"`

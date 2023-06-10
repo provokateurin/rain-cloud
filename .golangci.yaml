@@ -3,6 +3,11 @@ run:
     - ".*\\.gen\\.go$"
     - ".*\\.pb\\.go$"
     - "stub.go"
+  build-tags:
+    - core
+    - provisioning_api
+    - theming
+    - user_status
 output:
   sort-results: true
 linters-settings:

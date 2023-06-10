@@ -7,7 +7,7 @@ import (
 )
 
 //nolint:revive
-func (c CoreImpl) GetStatus(ctx context.Context, request GetStatusRequestObject) (GetStatusResponseObject, error) {
+func (c CoreAPI) GetStatus(ctx context.Context, request GetStatusRequestObject) (GetStatusResponseObject, error) {
 	return GetStatus200JSONResponse{
 		Edition:         common.Edition,
 		ExtendedSupport: common.ExtendedSupport,

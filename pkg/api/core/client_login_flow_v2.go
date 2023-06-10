@@ -3,7 +3,7 @@ package coreapi
 import "context"
 
 //nolint:lll,revive
-func (c CoreImpl) ClientFlowLoginV2Init(ctx context.Context, request ClientFlowLoginV2InitRequestObject) (ClientFlowLoginV2InitResponseObject, error) {
+func (c CoreAPI) ClientFlowLoginV2Init(ctx context.Context, request ClientFlowLoginV2InitRequestObject) (ClientFlowLoginV2InitResponseObject, error) {
 	return ClientFlowLoginV2Init200JSONResponse{
 		Login: "https://example.com",
 		Poll: struct {
@@ -17,7 +17,7 @@ func (c CoreImpl) ClientFlowLoginV2Init(ctx context.Context, request ClientFlowL
 }
 
 //nolint:lll,revive
-func (c CoreImpl) ClientFlowLoginV2Poll(ctx context.Context, request ClientFlowLoginV2PollRequestObject) (ClientFlowLoginV2PollResponseObject, error) {
+func (c CoreAPI) ClientFlowLoginV2Poll(ctx context.Context, request ClientFlowLoginV2PollRequestObject) (ClientFlowLoginV2PollResponseObject, error) {
 	return ClientFlowLoginV2Poll200JSONResponse{
 		AppPassword: "stub",
 		LoginName:   "admin",

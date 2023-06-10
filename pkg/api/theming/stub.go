@@ -2,57 +2,57 @@ package themingapi
 
 import "context"
 
-func (t ThemingImpl) UserThemeGetBackground(ctx context.Context, request UserThemeGetBackgroundRequestObject) (UserThemeGetBackgroundResponseObject, error) {
+func (t ThemingAPI) UserThemeGetBackground(ctx context.Context, request UserThemeGetBackgroundRequestObject) (UserThemeGetBackgroundResponseObject, error) {
 	//TODO implement me
 	panic("implement me")
 }
 
-func (t ThemingImpl) UserThemeDeleteBackground(ctx context.Context, request UserThemeDeleteBackgroundRequestObject) (UserThemeDeleteBackgroundResponseObject, error) {
+func (t ThemingAPI) UserThemeDeleteBackground(ctx context.Context, request UserThemeDeleteBackgroundRequestObject) (UserThemeDeleteBackgroundResponseObject, error) {
 	//TODO implement me
 	panic("implement me")
 }
 
-func (t ThemingImpl) UserThemeSetBackground(ctx context.Context, request UserThemeSetBackgroundRequestObject) (UserThemeSetBackgroundResponseObject, error) {
+func (t ThemingAPI) UserThemeSetBackground(ctx context.Context, request UserThemeSetBackgroundRequestObject) (UserThemeSetBackgroundResponseObject, error) {
 	//TODO implement me
 	panic("implement me")
 }
 
-func (t ThemingImpl) IconGetFavicon(ctx context.Context, request IconGetFaviconRequestObject) (IconGetFaviconResponseObject, error) {
+func (t ThemingAPI) IconGetFavicon(ctx context.Context, request IconGetFaviconRequestObject) (IconGetFaviconResponseObject, error) {
 	//TODO implement me
 	panic("implement me")
 }
 
-func (t ThemingImpl) IconGetTouchIcon(ctx context.Context, request IconGetTouchIconRequestObject) (IconGetTouchIconResponseObject, error) {
+func (t ThemingAPI) IconGetTouchIcon(ctx context.Context, request IconGetTouchIconRequestObject) (IconGetTouchIconResponseObject, error) {
 	//TODO implement me
 	panic("implement me")
 }
 
-func (t ThemingImpl) ThemingGetImage(ctx context.Context, request ThemingGetImageRequestObject) (ThemingGetImageResponseObject, error) {
+func (t ThemingAPI) ThemingGetImage(ctx context.Context, request ThemingGetImageRequestObject) (ThemingGetImageResponseObject, error) {
 	//TODO implement me
 	panic("implement me")
 }
 
-func (t ThemingImpl) IconGetThemedIcon(ctx context.Context, request IconGetThemedIconRequestObject) (IconGetThemedIconResponseObject, error) {
+func (t ThemingAPI) IconGetThemedIcon(ctx context.Context, request IconGetThemedIconRequestObject) (IconGetThemedIconResponseObject, error) {
 	//TODO implement me
 	panic("implement me")
 }
 
-func (t ThemingImpl) ThemingGetManifest(ctx context.Context, request ThemingGetManifestRequestObject) (ThemingGetManifestResponseObject, error) {
+func (t ThemingAPI) ThemingGetManifest(ctx context.Context, request ThemingGetManifestRequestObject) (ThemingGetManifestResponseObject, error) {
 	//TODO implement me
 	panic("implement me")
 }
 
-func (t ThemingImpl) ThemingGetThemeStylesheet(ctx context.Context, request ThemingGetThemeStylesheetRequestObject) (ThemingGetThemeStylesheetResponseObject, error) {
+func (t ThemingAPI) ThemingGetThemeStylesheet(ctx context.Context, request ThemingGetThemeStylesheetRequestObject) (ThemingGetThemeStylesheetResponseObject, error) {
 	//TODO implement me
 	panic("implement me")
 }
 
-func (t ThemingImpl) UserThemeDisableTheme(ctx context.Context, request UserThemeDisableThemeRequestObject) (UserThemeDisableThemeResponseObject, error) {
+func (t ThemingAPI) UserThemeDisableTheme(ctx context.Context, request UserThemeDisableThemeRequestObject) (UserThemeDisableThemeResponseObject, error) {
 	//TODO implement me
 	panic("implement me")
 }
 
-func (t ThemingImpl) UserThemeEnableTheme(ctx context.Context, request UserThemeEnableThemeRequestObject) (UserThemeEnableThemeResponseObject, error) {
+func (t ThemingAPI) UserThemeEnableTheme(ctx context.Context, request UserThemeEnableThemeRequestObject) (UserThemeEnableThemeResponseObject, error) {
 	//TODO implement me
 	panic("implement me")
 }

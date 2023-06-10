@@ -26,9 +26,6 @@ var templateInclude string
 //go:embed templates/app.go.tmpl
 var templateApp string
 
-//go:embed templates/impl.go.tmpl
-var templateImpl string
-
 type App struct {
 	ID              string
 	KubernetesID    string
@@ -112,11 +109,6 @@ func main() {
 		}
 
 		err = writeTemplate(fmt.Sprintf("pkg/api/%s/app.gen.go", app.ID), templateApp, app)
-		if err != nil {
-			panic(err)
-		}
-
-		err = writeTemplate(fmt.Sprintf("pkg/api/%s/impl.gen.go", app.ID), templateImpl, app)
 		if err != nil {
 			panic(err)
 		}

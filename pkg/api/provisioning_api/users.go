@@ -10,7 +10,7 @@ import (
 )
 
 //nolint:lll,revive
-func (p ProvisioningApiImpl) UsersGetCurrentUser(ctx context.Context, request UsersGetCurrentUserRequestObject) (UsersGetCurrentUserResponseObject, error) {
+func (p ProvisioningApiAPI) UsersGetCurrentUser(ctx context.Context, request UsersGetCurrentUserRequestObject) (UsersGetCurrentUserResponseObject, error) {
 	quota, err := json.Marshal(0)
 	if err != nil {
 		return nil, fmt.Errorf("failed to marshal quota: %w", err)

@@ -7,7 +7,7 @@ import (
 )
 
 //nolint:lll,revive
-func (c CoreImpl) NavigationGetAppsNavigation(ctx context.Context, request NavigationGetAppsNavigationRequestObject) (NavigationGetAppsNavigationResponseObject, error) {
+func (c CoreAPI) NavigationGetAppsNavigation(ctx context.Context, request NavigationGetAppsNavigationRequestObject) (NavigationGetAppsNavigationResponseObject, error) {
 	return NavigationGetAppsNavigation200JSONResponse{Ocs: struct {
 		Data []NavigationEntry `json:"data"`
 		Meta OCSMeta           `json:"meta"`

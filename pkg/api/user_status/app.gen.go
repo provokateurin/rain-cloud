@@ -1,5 +1,3 @@
-//go:build app
-
 package user_statusapi
 
 import (
@@ -7,9 +5,18 @@ import (
 	"github.com/provokateurin/rain-cloud/pkg/common"
 )
 
+type UserStatusAPI struct{}
+
+var _ StrictServerInterface = (*UserStatusAPI)(nil)
+
+type UserStatusRegistration struct {}
+
+var _ common.RegistrationInterface = (*UserStatusRegistration)(nil)
+
 func init() {
-	common.RegisterApp("user_status", func(router chi.Router) {
-		var api UserStatusImpl
+    var registration UserStatusRegistration
+	common.RegisterApp("user_status", registration, func(router chi.Router) {
+		var api UserStatusAPI
 		HandlerFromMux(NewStrictHandler(&api, nil), router)
 	})
 }

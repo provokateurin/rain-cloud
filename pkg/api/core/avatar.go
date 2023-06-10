@@ -10,7 +10,7 @@ import (
 )
 
 //nolint:lll,revive
-func (c CoreImpl) GuestAvatarGetAvatar(ctx context.Context, request GuestAvatarGetAvatarRequestObject) (GuestAvatarGetAvatarResponseObject, error) {
+func (c CoreAPI) GuestAvatarGetAvatar(ctx context.Context, request GuestAvatarGetAvatarRequestObject) (GuestAvatarGetAvatarResponseObject, error) {
 	size, err := parseSize(request.Size)
 	if err != nil {
 		return nil, err
@@ -29,7 +29,7 @@ func (c CoreImpl) GuestAvatarGetAvatar(ctx context.Context, request GuestAvatarG
 }
 
 //nolint:lll,revive
-func (c CoreImpl) GuestAvatarGetAvatarDark(ctx context.Context, request GuestAvatarGetAvatarDarkRequestObject) (GuestAvatarGetAvatarDarkResponseObject, error) {
+func (c CoreAPI) GuestAvatarGetAvatarDark(ctx context.Context, request GuestAvatarGetAvatarDarkRequestObject) (GuestAvatarGetAvatarDarkResponseObject, error) {
 	size, err := parseSize(request.Size)
 	if err != nil {
 		return nil, err
@@ -48,7 +48,7 @@ func (c CoreImpl) GuestAvatarGetAvatarDark(ctx context.Context, request GuestAva
 }
 
 //nolint:lll,revive
-func (c CoreImpl) AvatarGetAvatar(ctx context.Context, request AvatarGetAvatarRequestObject) (AvatarGetAvatarResponseObject, error) {
+func (c CoreAPI) AvatarGetAvatar(ctx context.Context, request AvatarGetAvatarRequestObject) (AvatarGetAvatarResponseObject, error) {
 	avatar, contentType, err := service.CoreService.GenerateAvatar(request.UserId, int(request.Size), false)
 	if err != nil {
 		return AvatarGetAvatar404JSONResponse{}, fmt.Errorf("failed to generate avatar: %w", err)
@@ -65,7 +65,7 @@ func (c CoreImpl) AvatarGetAvatar(ctx context.Context, request AvatarGetAvatarRe
 }
 
 //nolint:lll,revive
-func (c CoreImpl) AvatarGetAvatarDark(ctx context.Context, request AvatarGetAvatarDarkRequestObject) (AvatarGetAvatarDarkResponseObject, error) {
+func (c CoreAPI) AvatarGetAvatarDark(ctx context.Context, request AvatarGetAvatarDarkRequestObject) (AvatarGetAvatarDarkResponseObject, error) {
 	avatar, contentType, err := service.CoreService.GenerateAvatar(request.UserId, int(request.Size), true)
 	if err != nil {
 		return AvatarGetAvatarDark404JSONResponse{}, fmt.Errorf("failed to generate avatar: %w", err)

@@ -1,5 +1,3 @@
-//go:build app
-
 package themingapi
 
 import (
@@ -7,9 +5,18 @@ import (
 	"github.com/provokateurin/rain-cloud/pkg/common"
 )
 
+type ThemingAPI struct{}
+
+var _ StrictServerInterface = (*ThemingAPI)(nil)
+
+type ThemingRegistration struct {}
+
+var _ common.RegistrationInterface = (*ThemingRegistration)(nil)
+
 func init() {
-	common.RegisterApp("theming", func(router chi.Router) {
-		var api ThemingImpl
+    var registration ThemingRegistration
+	common.RegisterApp("theming", registration, func(router chi.Router) {
+		var api ThemingAPI
 		HandlerFromMux(NewStrictHandler(&api, nil), router)
 	})
 }
