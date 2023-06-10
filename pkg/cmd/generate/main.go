@@ -7,6 +7,8 @@ import (
 	"strings"
 	"text/template"
 
+	"github.com/provokateurin/rain-cloud/pkg/common"
+
 	"github.com/deepmap/oapi-codegen/pkg/codegen"
 	"github.com/getkin/kin-openapi/openapi3"
 )
@@ -30,7 +32,7 @@ type App struct {
 	ID              string
 	KubernetesID    string
 	InterfacePrefix string
-	Spec            string
+	Spec            *string
 	PathPrefixes    []string
 }
 
@@ -40,7 +42,7 @@ func main() {
 			ID:              "provisioning_api",
 			KubernetesID:    "provisioning-api",
 			InterfacePrefix: "ProvisioningApi",
-			Spec:            "nextcloud/server/apps/provisioning_api/openapi.json",
+			Spec:            common.Pointer("nextcloud/server/apps/provisioning_api/openapi.json"),
 			PathPrefixes: append(
 				pathPrefixesForApp("apps/provisioning_api", false, true),
 				"/ocs/v2.php/cloud/apps",
@@ -53,14 +55,14 @@ func main() {
 			ID:              "theming",
 			KubernetesID:    "theming",
 			InterfacePrefix: "Theming",
-			Spec:            "nextcloud/server/apps/theming/openapi.json",
+			Spec:            common.Pointer("nextcloud/server/apps/theming/openapi.json"),
 			PathPrefixes:    pathPrefixesForApp("apps/theming", true, true),
 		},
 		{
 			ID:              "user_status",
 			KubernetesID:    "user-status",
 			InterfacePrefix: "UserStatus",
-			Spec:            "nextcloud/server/apps/user_status/openapi.json",
+			Spec:            common.Pointer("nextcloud/server/apps/user_status/openapi.json"),
 			PathPrefixes:    pathPrefixesForApp("apps/user_status", false, true),
 		},
 		// Core has to be last
@@ -68,7 +70,7 @@ func main() {
 			ID:              "core",
 			KubernetesID:    "core",
 			InterfacePrefix: "Core",
-			Spec:            "nextcloud/server/core/openapi.json",
+			Spec:            common.Pointer("nextcloud/server/core/openapi.json"),
 			PathPrefixes: append(concatMultipleSlices([][]string{
 				pathPrefixesForApp("avatar", true, false),
 				pathPrefixesForApp("core", true, false),
@@ -108,43 +110,46 @@ func main() {
 			panic(err)
 		}
 
-		err = writeTemplate(fmt.Sprintf("pkg/api/%s/app.gen.go", app.ID), templateApp, app)
-		if err != nil {
-			panic(err)
-		}
+		if app.Spec != nil {
+			// If there is no spec, then the API has to be instantiated manually
+			err = writeTemplate(fmt.Sprintf("pkg/api/%s/app.gen.go", app.ID), templateApp, app)
+			if err != nil {
+				panic(err)
+			}
 
-		var spec *openapi3.T
-		spec, err = openapi3.NewLoader().LoadFromFile(app.Spec)
-		if err != nil {
-			panic(err)
-		}
+			var spec *openapi3.T
+			spec, err = openapi3.NewLoader().LoadFromFile(*app.Spec)
+			if err != nil {
+				panic(err)
+			}
 
-		paths := openapi3.Paths{}
-		for path, item := range spec.Paths {
-			path = strings.Replace(path, "/index.php", "", 1)
-			paths[path] = item
-		}
-		spec.Paths = paths
+			paths := openapi3.Paths{}
+			for path, item := range spec.Paths {
+				path = strings.Replace(path, "/index.php", "", 1)
+				paths[path] = item
+			}
+			spec.Paths = paths
 
-		var code string
-		code, err = codegen.Generate(spec, codegen.Configuration{
-			PackageName: app.ID,
-			Generate: codegen.GenerateOptions{
-				Models:    true,
-				ChiServer: true,
-				Strict:    true,
-			},
-			OutputOptions: codegen.OutputOptions{
-				SkipPrune: true,
-			},
-		})
-		if err != nil {
-			panic(err)
-		}
-		//nolint:gosec
-		err = os.WriteFile(fmt.Sprintf("pkg/api/%s/openapi.gen.go", app.ID), []byte(code), 0o644)
-		if err != nil {
-			panic(err)
+			var code string
+			code, err = codegen.Generate(spec, codegen.Configuration{
+				PackageName: app.ID,
+				Generate: codegen.GenerateOptions{
+					Models:    true,
+					ChiServer: true,
+					Strict:    true,
+				},
+				OutputOptions: codegen.OutputOptions{
+					SkipPrune: true,
+				},
+			})
+			if err != nil {
+				panic(err)
+			}
+			//nolint:gosec
+			err = os.WriteFile(fmt.Sprintf("pkg/api/%s/openapi.gen.go", app.ID), []byte(code), 0o644)
+			if err != nil {
+				panic(err)
+			}
 		}
 	}
 
