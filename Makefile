@@ -2,8 +2,16 @@ export KUBECONFIG=$(shell echo "$$(pwd)/.kubeconfig")
 export KUBE_CONFIG_PATH=${KUBECONFIG}
 export SKAFFOLD_DEFAULT_REPO=rain-cloud-local-registry.localhost:5000
 
+.PHONY: start
+start:
+	k3d cluster start rain-cloud-local || true
+
+.PHONY: stop
+stop:
+	k3d cluster stop rain-cloud-local || true
+
 .PHONY: terraform
-terraform:
+terraform: start
 	terraform apply -auto-approve
 
 .PHONY: dev
